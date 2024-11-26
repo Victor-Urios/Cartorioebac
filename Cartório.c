@@ -139,6 +139,12 @@ int deletar() //função de deletar
 		system("pause");
 	}
 }
+int fechar()
+{
+	printf("\nObrigado por usar o cartório da ebac!\n\n");
+	system("pause");
+	exit(0);
+}
 int main()
     {
 	int opcao=0; //definindo variáveis
@@ -155,7 +161,8 @@ int main()
     	printf("Escolha a opção desejada pro menu:\n\n\n");
     	printf("\t1 - Registrar nome\n");
     	printf("\t2 - Consultar nome\n");
-    	printf("\t3 - Deletar nomes\n\n\n\n");
+    	printf("\t3 - Deletar nomes\n");
+    	printf("\t4 - Sair do programa\n\n\n\n");
     	printf("Opção: "); //fim do menu
 	
     	scanf("%d", &opcao); //Armazenamento da escolha do usuario
@@ -174,6 +181,10 @@ int main()
 		    
 		    case 3:
 		    deletar();
+	    	break;
+	    	
+	    	case 4:
+	    	fechar();
 	    	break;
 	    	
 	    	default:
