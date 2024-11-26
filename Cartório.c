@@ -77,12 +77,14 @@ void registro()
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
+    	main();
 	}
 		
 	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
+		main();
 	}
     
     
@@ -130,17 +132,19 @@ void consulta() //função de consultar, fclose no final é importantissimo.
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
+    	main();
 	}
 		
 	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
+	    main();
 	}
 }
 	
 
-int deletar() //função de deletar
+void deletar() //função de deletar
 {
 
     char cpf[40];
@@ -170,21 +174,40 @@ int deletar() //função de deletar
     {
     if (remove(cpf) == 0) // se ele digitou S o programa vai remover o arquivo
     {
-    	printf(" Cpf deletado! ");
+    	printf(" Cpf deletado!\n\n\n ");
+    	printf("\n\nGostaria de deletar mais pessoas?:");
+    	getchar();
+    	char opcao;
+    	opcao = getchar();
+    	if ( opcao == 's' || opcao == 'S')
+    {
+    	return deletar();
 	}
-	    system("pause");
+	else if (opcao == 'n' || opcao == 'N')
+	{
+		printf("Volte ao menu principal.\n");
+		main();
 	}
-	
+	else
+	{
+		printf("Opção inexistente, volte ao menu por padrão");
+		system("pause");
+		main();
+	}
+	}
+}
     else if (opcao == 'n' || opcao =='N') // ele vai funcionar com o if de cima
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
+    	main();
 	}
 		
 	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
 	{
 		printf("\nCpf nao encontrado\n\n");
 		system("pause");
+		main();
 	}
 }
 int fechar()
@@ -193,7 +216,7 @@ int fechar()
 	system("pause");
 	exit(0);
 }
-int main()
+int main(void)
     {
 	int opcao=0; //definindo variáveis
 	int laco=1;
