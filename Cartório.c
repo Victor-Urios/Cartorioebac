@@ -7,7 +7,7 @@
 //pra ficar espaçado a de baixo com a de cima
 // o /n tem que estar presente na de cima
 
-void registro() 
+int registro() 
 { 
     //variaveis ex: char, string ex [40]
     char arquivo[40];
@@ -69,7 +69,7 @@ void registro()
     if ( opcao == 's' || opcao == 'S') // aqui tanto faz se é um s minusculo ou maiúsculo
     {
         printf("Vamos lá para mais um registro!\n\n");
-        return registro();
+        registro();
 
 	}
 	
@@ -90,7 +90,7 @@ void registro()
     
 }
 
-void consulta() //função de consultar, fclose no final é importantissimo.
+int consulta() //função de consultar, fclose no final é importantissimo.
 {
 	setlocale(LC_ALL, "Portuguese");
     char cpf[40];
@@ -111,11 +111,11 @@ void consulta() //função de consultar, fclose no final é importantissimo.
     {
     	printf("Essas são as informações do usuário: ");
     	printf("%s", conteudo);
-    	printf("\n\n\n\nGostaria de consultar mais pessoas?");
     	
 	}
     fclose(file);
 
+    printf("\n\n\n\nGostaria de consultar mais pessoas?");
     getchar();      //função para coletar a entrada de usuario > apenas caracteres < 
     
     char opcao; // criando variavel opção a partir de caracteres
@@ -124,8 +124,7 @@ void consulta() //função de consultar, fclose no final é importantissimo.
     if ( opcao == 's' || opcao == 'S') // aqui tanto faz se é um s minusculo ou maiúsculo
     {
         printf("Vamos lá para mais uma consulta!\n\n");
-        return consulta();
-
+        consulta();
 	}
 	
     else if (opcao == 'n' || opcao =='N') // ele vai funcionar com o if de cima
@@ -144,7 +143,7 @@ void consulta() //função de consultar, fclose no final é importantissimo.
 }
 	
 
-void deletar() //função de deletar
+int deletar() //função de deletar
 {
 
     char cpf[40];
@@ -181,7 +180,7 @@ void deletar() //função de deletar
     	opcao = getchar();
     	if ( opcao == 's' || opcao == 'S')
     {
-    	return deletar();
+    	deletar();
 	}
 	else if (opcao == 'n' || opcao == 'N')
 	{
@@ -216,7 +215,7 @@ int fechar()
 	system("pause");
 	exit(0);
 }
-int main(void)
+int main()
     {
 	int opcao=0; //definindo variáveis
 	int laco=1;
