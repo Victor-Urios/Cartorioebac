@@ -134,7 +134,7 @@ int consulta() //função de consultar, fclose no final é importantissimo.
     	main();
 	}
 		
-	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
+	else // se colocar outra coisa alem de s ou n ele vai jogar pro menu principal direto.
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
@@ -202,7 +202,7 @@ int deletar() //função de deletar
     	main();
 	}
 		
-	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
+	else //se colocar outra coisa alem de s ou n ele vai jogar pro menu principal direto.
 	{
 		printf("\nCpf nao encontrado\n\n");
 		system("pause");
