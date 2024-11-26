@@ -7,7 +7,7 @@
 //pra ficar espaçado a de baixo com a de cima
 // o /n tem que estar presente na de cima
 
-int registro() 
+void registro() 
 { 
     //variaveis ex: char, string ex [40]
     char arquivo[40];
@@ -59,11 +59,36 @@ int registro()
     fprintf(file,cargo);
     fclose(file);
     
-    system("pause");
+    printf("Gostaria de registrar mais pessoas?\n\n:");
+    
+    getchar();      //função para coletar a entrada de usuario > apenas caracteres < 
+    
+    char opcao; // criando variavel opção a partir de caracteres
+    opcao = getchar();  // definindo quais opções estão disponiveis para a getchar, no caso s,S ou n,N
+    
+    if ( opcao == 's' || opcao == 'S') // aqui tanto faz se é um s minusculo ou maiúsculo
+    {
+        printf("Vamos lá para mais um registro!\n\n");
+        return registro();
+
+	}
+	
+    else if (opcao == 'n' || opcao =='N') // ele vai funcionar com o if de cima
+    {
+    	printf("Volte ao menu principal.\n");
+    	system("pause");
+	}
+		
+	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
+	{
+		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
+		system("pause");
+	}
+    
     
 }
 
-int consulta() //função de consultar, fclose no final é importantissimo.
+void consulta() //função de consultar, fclose no final é importantissimo.
 {
 	setlocale(LC_ALL, "Portuguese");
     char cpf[40];
@@ -84,13 +109,36 @@ int consulta() //função de consultar, fclose no final é importantissimo.
     {
     	printf("Essas são as informações do usuário: ");
     	printf("%s", conteudo);
-    	printf("\n\n");
+    	printf("\n\n\n\nGostaria de consultar mais pessoas?");
+    	
 	}
     fclose(file);
-    system("pause");
 
+    getchar();      //função para coletar a entrada de usuario > apenas caracteres < 
+    
+    char opcao; // criando variavel opção a partir de caracteres
+    opcao = getchar();  // definindo quais opções estão disponiveis para a getchar, no caso s,S ou n,N
+    
+    if ( opcao == 's' || opcao == 'S') // aqui tanto faz se é um s minusculo ou maiúsculo
+    {
+        printf("Vamos lá para mais uma consulta!\n\n");
+        return consulta();
+
+	}
 	
+    else if (opcao == 'n' || opcao =='N') // ele vai funcionar com o if de cima
+    {
+    	printf("Volte ao menu principal.\n");
+    	system("pause");
+	}
+		
+	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
+	{
+		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
+		system("pause");
+	}
 }
+	
 
 int deletar() //função de deletar
 {
