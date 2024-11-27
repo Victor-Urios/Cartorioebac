@@ -217,18 +217,31 @@ int fechar()
 }
 int main()
     {
+    setlocale(LC_ALL, "Portuguese");	
 	int opcao=0; //definindo variáveis
 	int laco=1;
+	char logindigitado[10]="a";
 	char senhadigitada[10]="a";
-	int comparacao;
+	int login;
+	int senha;
+	
+	system("cls");
+	printf("> Cartório da EBAC <\n\n");
+	printf("Digite o login administrativo:");
+	scanf("%s", logindigitado);
+	login = strcmp(logindigitado,  "admin");
+	
+    if(login == 0)
+    {
 	
 	printf("> Cartório da EBAC <\n\n");
 	printf("Login de Admin\n\nDigite a sua senha:");
 	scanf("%s", senhadigitada);
 	
-	comparacao = strcmp(senhadigitada,  "admin");
 	
-	if(comparacao == 0) // If comparativo ou qualquer outro que vá encaixar um else > NÃO, VAI. PONTO E VIRGULA <  então sempre que for fazer um if else, nao ponha ponto e virgula no final do parenteses
+	senha = strcmp(senhadigitada,  "admin");
+	
+	if(senha == 0) // If comparativo ou qualquer outro que vá encaixar um else > NÃO, VAI. PONTO E VIRGULA <  então sempre que for fazer um if else, nao ponha ponto e virgula no final do parenteses
 	                    // assim o código não quebra, foi o meu erro em uma das aulas
 	{
 	
@@ -278,9 +291,14 @@ int main()
         }         
    }
       	else          // funciona com o if de comparação
-		printf("Senha incorreta!\n\n");
+		printf("\nSenha incorreta!\n\n");
 		system("pause");
 		main();
+}
+        else // teste
+        printf("\nLogin não reconhecido, volte ao menu\n\n");
+        system("pause");
+        main();
 }
 
 
