@@ -219,50 +219,69 @@ int main()
     {
 	int opcao=0; //definindo variáveis
 	int laco=1;
+	char senhadigitada[10]="a";
+	int comparacao;
 	
-	for(laco=1;laco=1;)
-    { 
+	printf("> Cartório da EBAC <\n\n");
+	printf("Login de Admin\n\nDigite a sua senha:");
+	scanf("%s", senhadigitada);
+	
+	comparacao = strcmp(senhadigitada,  "admin");
+	
+	if(comparacao == 0) // If comparativo ou qualquer outro que vá encaixar um else > NÃO, VAI. PONTO E VIRGULA <  então sempre que for fazer um if else, nao ponha ponto e virgula no final do parenteses
+	                    // assim o código não quebra, foi o meu erro em uma das aulas
+	{
+	
+    	for(laco=1;laco=1;)
+         { 
        
-       system("cls");
+           system("cls");
 	
-	    setlocale(LC_ALL, "Portuguese"); //Definição de Linguagem
-		
-    	printf("> Cartório da EBAC <\n\n");  // menu
-    	printf("Escolha a opção desejada pro menu:\n\n\n");
-    	printf("\t1 - Registrar nome\n");
-    	printf("\t2 - Consultar nome\n");
-    	printf("\t3 - Deletar nomes\n");
-    	printf("\t4 - Sair do programa\n\n\n\n");
-    	printf("Opção: "); //fim do menu
+    	    setlocale(LC_ALL, "Portuguese"); //Definição de Linguagem
+ 		
+        	printf("> Cartório da EBAC <\n\n");  // menu
+        	printf("Escolha a opção desejada pro menu:\n\n\n");
+        	printf("\t1 - Registrar nome\n");
+        	printf("\t2 - Consultar nome\n");
+        	printf("\t3 - Deletar nomes\n");
+        	printf("\t4 - Sair do programa\n\n\n\n");
+        	printf("Opção: "); //fim do menu
 	
-    	scanf("%d", &opcao); //Armazenamento da escolha do usuario
+        	scanf("%d", &opcao); //Armazenamento da escolha do usuario
 	
-    	system("cls");
+        	system("cls");
 	    
-	    switch(opcao) //codigo fica mais limpo e mais leve
-        {
-            case 1:
-            registro();
-		    break;
+	        switch(opcao) //codigo fica mais limpo e mais leve
+            {
+                case 1:
+                registro();
+	     	    break;
 		    
-		    case 2:
-		    consulta();
-		    break;
-		    
-		    case 3:
-		    deletar();
-	    	break;
+	    	    case 2:
+	    	    consulta();
+	    	    break;
+	 	    
+	    	    case 3:
+	    	    deletar();
+	        	break;
 	    	
-	    	case 4:
-	    	fechar();
-	    	break;
+	        	case 4:
+	        	fechar();
+	        	break;
 	    	
-	    	default:
-		    printf("Opção indisponivel no momento\n");
-		    system("pause");
-		    break;
+	        	default:
+	    	    printf("Opção indisponivel no momento\n");
+	    	    system("pause");
+	    	    break;
             
-			}	
+	    		}	
+        }         
+   }
+      	else          // funciona com o if de comparação
+		printf("Senha incorreta!\n\n");
+		system("pause");
+		main();
 }
-}
+
+
 
