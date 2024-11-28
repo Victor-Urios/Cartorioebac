@@ -77,14 +77,14 @@ int registro()
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
-    	main();
+    	paineladm();
 	}
 		
 	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
-		main();
+		paineladm();
 	}
     
     
@@ -131,14 +131,14 @@ int consulta() //função de consultar, fclose no final é importantissimo.
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
-    	main();
+    	paineladm();
 	}
 		
 	else // se colocar outra coisa alem de s ou n ele vai jogar pro menu principal direto.
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
-	    main();
+	    paineladm();
 	}
 }
 	
@@ -185,13 +185,13 @@ int deletar() //função de deletar
 	else if (opcao == 'n' || opcao == 'N')
 	{
 		printf("Volte ao menu principal.\n");
-		main();
+		paineladm();
 	}
 	else
 	{
 		printf("Opção inexistente, volte ao menu por padrão");
 		system("pause");
-		main();
+		paineladm();
 	}
 	}
 }
@@ -199,14 +199,14 @@ int deletar() //função de deletar
     {
     	printf("Volte ao menu principal.\n");
     	system("pause");
-    	main();
+    	paineladm();
 	}
 		
 	else //se colocar outra coisa alem de s ou n ele vai jogar pro menu principal direto.
 	{
 		printf("\nCpf nao encontrado\n\n");
 		system("pause");
-		main();
+		paineladm();
 	}
 }
 int fechar()
@@ -218,8 +218,6 @@ int fechar()
 int main()
     {
     setlocale(LC_ALL, "Portuguese");	
-	int opcao=0; //definindo variáveis
-	int laco=1;
 	char logindigitado[10]="a";
 	char senhadigitada[10]="a";
 	int login;
@@ -237,14 +235,31 @@ int main()
 	printf("> Cartório da EBAC <\n\n");
 	printf("Login de Admin\n\nDigite a sua senha:");
 	scanf("%s", senhadigitada);
-	
-	
 	senha = strcmp(senhadigitada,  "admin");
 	
 	if(senha == 0) // If comparativo ou qualquer outro que vá encaixar um else > NÃO, VAI. PONTO E VIRGULA <  então sempre que for fazer um if else, nao ponha ponto e virgula no final do parenteses
-	                    // assim o código não quebra, foi o meu erro em uma das aulas
+	                    // assim o código não quebra, foi o meu erro em uma das aulas               
 	{
-	
+	printf("\nSeja bem vindo administrador!\n\n");
+	system("pause");
+	paineladm();
+	        
+   }
+      	else          // funciona com o if de comparação
+		printf("\nSenha incorreta!\n\n");
+		system("pause");
+		main();
+}
+        else // teste
+        printf("\nLogin não reconhecido, volte ao menu\n\n");
+        system("pause");
+        main();
+}
+int paineladm()
+{
+	int opcao=0; //definindo variáveis
+	int laco=1;
+	setlocale(LC_ALL, "Portuguese");
     	for(laco=1;laco=1;)
          { 
        
@@ -257,7 +272,8 @@ int main()
         	printf("\t1 - Registrar nome\n");
         	printf("\t2 - Consultar nome\n");
         	printf("\t3 - Deletar nomes\n");
-        	printf("\t4 - Sair do programa\n\n\n\n");
+        	printf("\t4 - Sair do programa\n");
+        	printf("\t5 - Voltar ao menu de login?\n\n\n\n");
         	printf("Opção: "); //fim do menu
 	
         	scanf("%d", &opcao); //Armazenamento da escolha do usuario
@@ -281,24 +297,20 @@ int main()
 	        	case 4:
 	        	fechar();
 	        	break;
-	    	
+	    	    
+	    	    case 5:
+				printf("\nObrigado pelo serviço, adiministrador!\n");
+				system("pause");
+	    	    main();
+	    	    break;
+	    	    
 	        	default:
-	    	    printf("Opção indisponivel no momento\n");
+	    	    printf("\nOpção indisponivel no momento\n");
 	    	    system("pause");
 	    	    break;
             
 	    		}	
-        }         
-   }
-      	else          // funciona com o if de comparação
-		printf("\nSenha incorreta!\n\n");
-		system("pause");
-		main();
-}
-        else // teste
-        printf("\nLogin não reconhecido, volte ao menu\n\n");
-        system("pause");
-        main();
+        } 
 }
 
 
