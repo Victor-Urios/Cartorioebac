@@ -9,21 +9,26 @@
 
 int registro() 
 { 
+    setlocale(LC_ALL, "Portuguese");
     //variaveis ex: char, string ex [40]
-    char arquivo[40];
-    char cpf[40];
-    char nome[40];
-    char sobrenome[40];
-    char cargo[40];
+    char arquivo[200];
+    char cpf[200];
+    char nome[200];
+    char sobrenome[200];
+    char cargo[200];
+    system("CLS");
+    //fim da criação de variaveis
+
     
-    printf("Digite o cpf para o registro:");
+    printf("Digite o cpf para o registro: ");
     scanf("%s", cpf); // Coleta informação do usuário
     
     strcpy(arquivo, cpf); //ele copia o valor das strings por ex, o arquivo tera o mesmo nome dos caracteres escritos no CPF
     
     FILE *file; //cria o arquivo no banco de dados
-    file = fopen(arquivo, "w"); // cria o arquivo
-    fprintf(file,cpf); //salvo o valor do cpf
+    file = fopen(arquivo, "w"); // cria o arquivo o "w" significa esrever.
+    fprintf(file,"CPF: "); //salvo o valor do cpf
+    fprintf(file,cpf); // salvando o valor da variavel ( no caso o nome do arquivo é o mesmo do cpf )
     fclose(file); // fecha o arquivo
     
     file = fopen(arquivo, "a");
@@ -34,6 +39,7 @@ int registro()
     scanf("%s",nome);
     
     file = fopen(arquivo, "a");
+    fprintf(file,"Nome: ");
     fprintf(file,nome);
     fclose(file);
     
@@ -45,6 +51,7 @@ int registro()
     scanf("%s",sobrenome);
     
     file = fopen(arquivo, "a");
+    fprintf(file,"Sobrenome: ");
     fprintf(file,sobrenome);
     fclose(file);
     
@@ -56,19 +63,25 @@ int registro()
     scanf("%s",cargo);
     
     file = fopen(arquivo, "a");
+	fprintf(file,"Cargo: ");
     fprintf(file,cargo);
     fclose(file);
     
+    file = fopen(arquivo, "a");
+    fprintf(file,"\n");
+    fclose(file);
+    
+    printf("\n\nUsuário cadastrado com sucesso!\n\n");
     printf("Gostaria de registrar mais pessoas?\n\n:");
     
     getchar();      //função para coletar a entrada de usuario > apenas caracteres < 
-    
     char opcao; // criando variavel opção a partir de caracteres
     opcao = getchar();  // definindo quais opções estão disponiveis para a getchar, no caso s,S ou n,N
     
     if ( opcao == 's' || opcao == 'S') // aqui tanto faz se é um s minusculo ou maiúsculo
     {
-        printf("Vamos lá para mais um registro!\n\n");
+        printf("\nVamos lá para mais um registro!\n\n");
+        system("pause");
         registro();
 
 	}
@@ -80,7 +93,14 @@ int registro()
     	paineladm();
 	}
 		
-	else // caso o cpf esteja invalido, este else vai para o primeiro if acima do remove
+	else if (opcao == 0) // caso não escolha nenhuma
+	{
+		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
+		system("pause");
+		paineladm();
+	}
+	
+	else // caso não escolha nenhuma
 	{
 		printf("\nOpção nao existente, volte ao menu por padrão!\n\n");
 		system("pause");
@@ -95,8 +115,9 @@ int consulta() //função de consultar, fclose no final é importantissimo.
 	setlocale(LC_ALL, "Portuguese");
     char cpf[40];
     char conteudo[200];
+    system("CLS");
     
-    printf("Digite o cpf a ser consultado: ");
+    printf("Digite o cpf a ser consultado: "); // qual usuario esta sendo consultado
     scanf("%s",cpf);
     
     FILE *file;
@@ -105,15 +126,16 @@ int consulta() //função de consultar, fclose no final é importantissimo.
     if(file == NULL)
     {
     	printf("CPF Não encontrado.\n\n");
+    	system("pause");
+    	consulta();
 	}
     
     while(fgets(conteudo, 200, file) != NULL) //ele vai ficar rodando até pegar todo conteudo, quando parar no null ele vai parar e é isso ai.
     {
-    	printf("Essas são as informações do usuário: ");
-    	printf("%s", conteudo);
-    	
+    	printf("%s", conteudo);   	
 	}
     fclose(file);
+    system("pause");
 
     printf("\n\n\n\nGostaria de consultar mais pessoas?");
     getchar();      //função para coletar a entrada de usuario > apenas caracteres < 
@@ -147,6 +169,7 @@ int deletar() //função de deletar
 {
 
     char cpf[40];
+    system("CLS");
     printf("digite o cpf a ser deletado:");
     scanf("%s", cpf);
     
@@ -180,11 +203,13 @@ int deletar() //função de deletar
     	opcao = getchar();
     	if ( opcao == 's' || opcao == 'S')
     {
+
     	deletar();
 	}
 	else if (opcao == 'n' || opcao == 'N')
 	{
 		printf("Volte ao menu principal.\n");
+		system("pause");
 		paineladm();
 	}
 	else
@@ -209,12 +234,6 @@ int deletar() //função de deletar
 		paineladm();
 	}
 }
-int fechar()
-{
-	printf("\nObrigado por usar o cartório da ebac!\n\n");
-	system("pause");
-	exit(0);
-}
 int main()
     {
     setlocale(LC_ALL, "Portuguese");	
@@ -227,7 +246,7 @@ int main()
 	printf("> Cartório da EBAC <\n\n");
 	printf("Digite o login administrativo:");
 	scanf("%s", logindigitado);
-	login = strcmp(logindigitado,  "admin");
+	login = strcmp(logindigitado, "admin");
 	
     if(login == 0)
     {
@@ -235,7 +254,7 @@ int main()
 	printf("> Cartório da EBAC <\n\n");
 	printf("Login de Admin\n\nDigite a sua senha:");
 	scanf("%s", senhadigitada);
-	senha = strcmp(senhadigitada,  "admin");
+	senha = strcmp(senhadigitada, "admin");
 	
 	if(senha == 0) // If comparativo ou qualquer outro que vá encaixar um else > NÃO, VAI. PONTO E VIRGULA <  então sempre que for fazer um if else, nao ponha ponto e virgula no final do parenteses
 	                    // assim o código não quebra, foi o meu erro em uma das aulas               
@@ -250,30 +269,25 @@ int main()
 		system("pause");
 		main();
 }
-        else // teste
+        else // caso nao digite admin ele te joga pra tela de login dnv
         printf("\nLogin não reconhecido, volte ao menu\n\n");
         system("pause");
         main();
 }
-int paineladm()
+int paineladm() //criei essa int exclusiva pro painel de adm, no main ele n funciona um looping bonitinho, agora com uma int separada ele tem um loop mais consiso, mt melhor que ficar colocando login e senha a cada segundo.
 {
 	int opcao=0; //definindo variáveis
-	int laco=1;
 	setlocale(LC_ALL, "Portuguese");
-    	for(laco=1;laco=1;)
          { 
        
-           system("cls");
-	
-    	    setlocale(LC_ALL, "Portuguese"); //Definição de Linguagem
- 		
+            system("cls");
         	printf("> Cartório da EBAC <\n\n");  // menu
         	printf("Escolha a opção desejada pro menu:\n\n\n");
         	printf("\t1 - Registrar nome\n");
         	printf("\t2 - Consultar nome\n");
         	printf("\t3 - Deletar nomes\n");
-        	printf("\t4 - Sair do programa\n");
-        	printf("\t5 - Voltar ao menu de login?\n\n\n\n");
+        	printf("\t4 - Voltar ao menu de login?\n");
+           	printf("\t5 - Sair do programa\n\n\n\n");     	
         	printf("Opção: "); //fim do menu
 	
         	scanf("%d", &opcao); //Armazenamento da escolha do usuario
@@ -295,13 +309,15 @@ int paineladm()
 	        	break;
 	    	
 	        	case 4:
-	        	fechar();
-	        	break;
-	    	    
-	    	    case 5:
 				printf("\nObrigado pelo serviço, adiministrador!\n");
 				system("pause");
 	    	    main();
+	        	break;
+	    	    
+	    	    case 5:
+            	printf("\nObrigado por usar o cartório da ebac!\n\n");
+            	system("pause");
+             	exit(0);
 	    	    break;
 	    	    
 	        	default:
